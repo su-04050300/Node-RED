@@ -1,0 +1,102 @@
+[
+    {
+        "id": "2a106f1a.7ceabc",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "45434dfb.206ab",
+        "type": "inject",
+        "z": "2a106f1a.7ceabc",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "x": 110,
+        "y": 120,
+        "wires": [
+            [
+                "5aac083a.29a49c",
+                "d986ca20.93252"
+            ]
+        ]
+    },
+    {
+        "id": "5aac083a.29a49c",
+        "type": "function",
+        "z": "2a106f1a.7ceabc",
+        "name": "payload",
+        "func": "msg.headers={\n    deviceKey:\"7Kcc57qHUKlatNwb\"\n};\nmsg.payload=\"Temperature,,17.5\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 261,
+        "y": 144.6999969482422,
+        "wires": [
+            [
+                "68877703.96adec"
+            ]
+        ]
+    },
+    {
+        "id": "68877703.96adec",
+        "type": "http request",
+        "z": "2a106f1a.7ceabc",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "url": "https://api.mediatek.com/mcs/v2/devices/DlaK77xV/datapoints.csv",
+        "tls": "",
+        "x": 422,
+        "y": 147.5,
+        "wires": [
+            [
+                "f03df176.239d9",
+                "99d2fa86.a32318"
+            ]
+        ]
+    },
+    {
+        "id": "f03df176.239d9",
+        "type": "http response",
+        "z": "2a106f1a.7ceabc",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 611,
+        "y": 156.72999572753906,
+        "wires": []
+    },
+    {
+        "id": "99d2fa86.a32318",
+        "type": "debug",
+        "z": "2a106f1a.7ceabc",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 617,
+        "y": 79.33000183105469,
+        "wires": []
+    },
+    {
+        "id": "d986ca20.93252",
+        "type": "function",
+        "z": "2a106f1a.7ceabc",
+        "name": "payload",
+        "func": "msg.headers={\n    deviceKey:\"7Kcc57qHUKlatNwb\"\n};\nmsg.payload=\"Humidity,,80\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 260,
+        "y": 220,
+        "wires": [
+            [
+                "68877703.96adec"
+            ]
+        ]
+    }
+]

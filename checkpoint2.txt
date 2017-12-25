@@ -1,0 +1,125 @@
+[
+    {
+        "id": "2550ce26.444816",
+        "type": "tab",
+        "label": "Flow 1"
+    },
+    {
+        "id": "97c14591.702e9",
+        "type": "inject",
+        "z": "2550ce26.444816",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "x": 99,
+        "y": 120.36000061035156,
+        "wires": [
+            [
+                "2288a822.74f188"
+            ]
+        ]
+    },
+    {
+        "id": "2288a822.74f188",
+        "type": "function",
+        "z": "2550ce26.444816",
+        "name": "payload",
+        "func": "msg.headers={\n    deviceKey:\"7Kcc57qHUKlatNwb\"\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 260,
+        "y": 180,
+        "wires": [
+            [
+                "c96573bc.d714c8",
+                "a8ca8c26.b85e6"
+            ]
+        ]
+    },
+    {
+        "id": "c96573bc.d714c8",
+        "type": "http request",
+        "z": "2550ce26.444816",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "url": "http://api.mediatek.com/mcs/v2/devices/DlaK77xV/datachannels/Temperature/datapoints.csv",
+        "tls": "",
+        "x": 450,
+        "y": 180,
+        "wires": [
+            [
+                "327974b.8a1790c",
+                "c01885cd.967668"
+            ]
+        ]
+    },
+    {
+        "id": "327974b.8a1790c",
+        "type": "http response",
+        "z": "2550ce26.444816",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 670,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "c01885cd.967668",
+        "type": "debug",
+        "z": "2550ce26.444816",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 644,
+        "y": 70.61000061035156,
+        "wires": []
+    },
+    {
+        "id": "a8ca8c26.b85e6",
+        "type": "http request",
+        "z": "2550ce26.444816",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "url": "http://api.mediatek.com/mcs/v2/devices/DlaK77xV/datachannels/Humidity/datapoints.csv",
+        "tls": "",
+        "x": 450,
+        "y": 280,
+        "wires": [
+            [
+                "f9700711.4e7e2",
+                "df429293.a2bb7"
+            ]
+        ]
+    },
+    {
+        "id": "df429293.a2bb7",
+        "type": "debug",
+        "z": "2550ce26.444816",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 615,
+        "y": 402.94000244140625,
+        "wires": []
+    },
+    {
+        "id": "f9700711.4e7e2",
+        "type": "http response",
+        "z": "2550ce26.444816",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 641,
+        "y": 307.3299865722656,
+        "wires": []
+    }
+]
